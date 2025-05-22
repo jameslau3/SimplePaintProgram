@@ -45,6 +45,10 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
      */
     private static final String RECTANGLE = "Rectangle";
     /**
+     * A string value of "Ellipse".
+     */
+    private static final String ELLIPSE = "Ellipse";
+    /**
      * Black and white line image icon.
      */
     private static final ImageIcon LINE_ICON_BW = new ImageIcon("icons/line_bw.gif");
@@ -55,7 +59,14 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
     /**
      * Black and white ellipse image icon.
      */
+    /**
+     * Black and white ellipse image icon.
+     */
     private static final ImageIcon ELLIPSE_ICON_BW = new ImageIcon("icons/ellipse_bw.gif");
+    /**
+     * Black and white pencil image icon.
+     */
+    private static final ImageIcon PENCIL_ICON_BW = new ImageIcon("icons/pencil_bw.gif");
     /**
      * Colored line image icon.
      */
@@ -68,6 +79,10 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
      * Colored ellipse image icon.
      */
     private static final ImageIcon ELLIPSE_ICON = new ImageIcon("icons/ellipse.gif");
+    /**
+     * Colored pencil image icon.
+     */
+    private static final ImageIcon PENCIL_ICON = new ImageIcon("icons/pencil.gif");
     /**
      * A custom color of UW's purple.
      */
@@ -136,6 +151,10 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
      * A button that uses the tool to ellipse.
      */
     private JRadioButtonMenuItem myEllipseButton;
+    /**
+     * A button that uses the tool to pencil.
+     */
+    private JRadioButtonMenuItem myPencilButton;
     /**
      * The panel that the menu bar is being added with.
      */
@@ -284,7 +303,7 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
      * @return a JRadioButtonMenuItem with a specific tool.
      */
     public JRadioButtonMenuItem createToolButton(final Action theAction) { 
-        final JRadioButtonMenuItem button;
+        JRadioButtonMenuItem button;
         if (LINE.equals(theAction.toString())) {
             myLineButton = new JRadioButtonMenuItem(theAction);
             myLineButton.setIcon(LINE_ICON);
@@ -296,11 +315,16 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
             myRectangleButton.setIcon(RECTANGLE_ICON_BW);
             myMenuButtonGroup.add(myRectangleButton);
             button = myRectangleButton;
-        } else {
+        } else if (ELLIPSE.equals(theAction.toString())) {
             myEllipseButton = new JRadioButtonMenuItem(theAction);
             myEllipseButton.setIcon(ELLIPSE_ICON_BW);
             myMenuButtonGroup.add(myEllipseButton);
             button = myEllipseButton;
+        } else {
+            myPencilButton = new JRadioButtonMenuItem(theAction);
+            myPencilButton.setIcon(PENCIL_ICON_BW);
+            myMenuButtonGroup.add(myPencilButton);
+            button = myPencilButton;
         }
         return button;
     }
@@ -370,6 +394,10 @@ public class PaintGUIJMenuBar extends JMenuBar implements PropertyChangeListener
                 myLineButton.setIcon(LINE_ICON_BW);
                 myRectangleButton.setIcon(RECTANGLE_ICON_BW);
                 myEllipseButton.setIcon(ELLIPSE_ICON);
+            } else if (theEvent.getNewValue().toString().equals(myPencilButton.getText())) {
+                myLineButton.setIcon(LINE_ICON_BW);
+                myRectangleButton.setIcon(RECTANGLE_ICON_BW);
+                myEllipseButton.setIcon(ELLIPSE_ICON_BW);
             }
         }
     }

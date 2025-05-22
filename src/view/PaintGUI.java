@@ -87,7 +87,8 @@ public final class PaintGUI {
      */
     private void setUpTools() {
         final Action[] actions = {new LineAction(myDrawingPanel)
-                , new RectangleAction(myDrawingPanel), new EllipseAction(myDrawingPanel)};
+                , new RectangleAction(myDrawingPanel), new EllipseAction(myDrawingPanel), 
+                new PencilAction(myDrawingPanel)};
         final JMenu toolMenu = new JMenu("Tools");
         JMenuItem menuItem;
         JToggleButton toggleButton;
